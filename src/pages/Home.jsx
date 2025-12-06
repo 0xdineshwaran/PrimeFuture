@@ -697,7 +697,7 @@ const Home = () => {
                   speed={700}
                   onSwiper={(s) => playActiveReel(s)}
                   onSlideChange={(s) => playActiveReel(s)}
-                  className="w-full max-w-[420px]"
+                  className="w-full max-w-[320px]"
                 >
                   {videoReels.map((vid, idx) => (
                     <SwiperSlide key={vid.src}>
@@ -718,7 +718,7 @@ const Home = () => {
                   ))}
                 </Swiper>
               </div>
-              <div className="mt-24 md:mt-48">
+              <div className="mt-10 md:mt-20">
                 <div className="text-center">
                   <p className="text-sm font-semibold uppercase tracking-[0.4em] text-primary/70">
                     Video Review

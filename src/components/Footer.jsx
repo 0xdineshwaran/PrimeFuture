@@ -96,7 +96,7 @@ const Footer = () => {
 
       <div className="border-t border-white/20">
         <div className="mx-auto flex max-w-6xl flex-col gap-4 px-6 py-8 text-center text-sm text-white/70 md:flex-row md:items-center md:justify-between">
-          <div>© 2025 Beencoder. All rights reserved.</div>
+          <div>© 2025 Dineshwaran. All rights reserved.</div>
           <div className="flex flex-wrap justify-center gap-4">
             {[
               { label: 'Privacy Policy', to: '/privacy' },
