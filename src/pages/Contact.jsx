@@ -5,18 +5,26 @@
  * Used on: /contact
  */
 
-import { useState } from 'react'
-import { motion as Motion } from 'framer-motion'
-import { Helmet } from "react-helmet"
-import { FiMail, FiPhone, FiMapPin, FiLinkedin, FiInstagram, FiFacebook, FiClock } from 'react-icons/fi'
-import { useReveal } from '../hooks/useReveal'
+import { useState } from "react";
+import { motion as Motion } from "framer-motion";
+import { Helmet } from "react-helmet";
+import {
+  FiMail,
+  FiPhone,
+  FiMapPin,
+  FiLinkedin,
+  FiInstagram,
+  FiFacebook,
+  FiClock,
+} from "react-icons/fi";
+import { useReveal } from "../hooks/useReveal";
 
 const initialForm = {
-  name: '',
-  email: '',
-  phone: '',
-  message: '',
-}
+  name: "",
+  email: "",
+  phone: "",
+  message: "",
+};
 
 /**
  * Contact
@@ -24,54 +32,65 @@ const initialForm = {
  */
 const Contact = () => {
   // Form state object containing user inputs
-  const [form, setForm] = useState(initialForm)
+  const [form, setForm] = useState(initialForm);
   // Field-level validation errors
-  const [errors, setErrors] = useState({})
+  const [errors, setErrors] = useState({});
   // Loading indicator for form submission
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
   // Success flag displayed after submission
-  const [success, setSuccess] = useState(false)
+  const [success, setSuccess] = useState(false);
 
   // Section reveal refs
-  const [heroRef, heroControls] = useReveal()
-  const [formRef, formControls] = useReveal()
-  const [socialRef, socialControls] = useReveal()
+  const [heroRef, heroControls] = useReveal();
+  const [formRef, formControls] = useReveal();
+  const [socialRef, socialControls] = useReveal();
 
   // Validate form fields and return errors object
   const validate = () => {
-    const nextErrors = {}
-    if (!form.name.trim()) nextErrors.name = 'Name is required.'
-    if (!form.email.trim()) nextErrors.email = 'Email is required.'
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-    if (form.email && !emailRegex.test(form.email)) nextErrors.email = 'Enter a valid email.'
-    if (!form.phone.trim()) nextErrors.phone = 'Phone number is required.'
-    if (!form.message.trim()) nextErrors.message = 'Message is required.'
-    return nextErrors
-  }
+    const nextErrors = {};
+    if (!form.name.trim()) nextErrors.name = "Name is required.";
+    if (!form.email.trim()) nextErrors.email = "Email is required.";
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (form.email && !emailRegex.test(form.email))
+      nextErrors.email = "Enter a valid email.";
+    if (!form.phone.trim()) nextErrors.phone = "Phone number is required.";
+    if (!form.message.trim()) nextErrors.message = "Message is required.";
+    return nextErrors;
+  };
 
   // Update form state when inputs change
   const handleChange = (event) => {
-    const { name, value } = event.target
-    setForm((prev) => ({ ...prev, [name]: value }))
-    setErrors((prev) => ({ ...prev, [name]: '' }))
-  }
+    const { name, value } = event.target;
+    setForm((prev) => ({ ...prev, [name]: value }));
+    setErrors((prev) => ({ ...prev, [name]: "" }));
+  };
 
   // When user submits the contact form, validate and simulate an async submit
-  const handleSubmit = (event) => {
-    event.preventDefault()
-    const validation = validate()
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    const validation = validate();
     if (Object.keys(validation).length) {
-      setErrors(validation)
-      return
+      setErrors(validation);
+      return;
     }
-    setLoading(true)
-    // Simulated async call (replace with real API integration)
-    setTimeout(() => {
-      setLoading(false)
-      setSuccess(true)
-      setForm(initialForm)
-    }, 1500)
-  }
+
+    setLoading(true);
+
+    try {
+      await fetch("https://script.google.com/macros/s/AKfycbwl1u0PqRtjfO_UsT9cyv1YjxVe_WsVJBF-RX3J_A88FS9BOnaEJxPNdEuZTus5VoFRfg/exec", {
+        method: "POST",
+        body: JSON.stringify(form),
+      });
+
+      setSuccess(true);
+      setForm(initialForm);
+    } catch (error) {
+      console.log("Error:", error);
+    }
+
+    setLoading(false);
+  };
 
   return (
     <div className="bg-white text-primary">
@@ -89,9 +108,13 @@ const Contact = () => {
         animate={heroControls}
         className="px-6 pb-16 pt-32 text-center"
       >
-        <p className="text-sm uppercase tracking-[0.4em] text-primary/70">Home &gt; Contact</p>
+        <p className="text-sm uppercase tracking-[0.4em] text-primary/70">
+          Home &gt; Contact
+        </p>
         <h1 className="mt-6 text-4xl font-semibold">Get In Touch</h1>
-        <p className="mt-4 text-primary/80">Let&apos;s Start Your Journey Together</p>
+        <p className="mt-4 text-primary/80">
+          Let&apos;s Start Your Journey Together
+        </p>
       </Motion.section>
 
       {/* ===== SECTION: Contact Form ===== */}
@@ -102,29 +125,52 @@ const Contact = () => {
         className="px-6 pb-16"
       >
         <div className="mx-auto grid max-w-6xl gap-12 md:grid-cols-[3fr_2fr]">
-          <form onSubmit={handleSubmit} className="rounded-3xl border border-primary/10 p-10 shadow-elevation">
+          <form
+            onSubmit={handleSubmit}
+            className="rounded-3xl border border-primary/10 p-10 shadow-elevation"
+          >
             <h2 className="text-2xl font-semibold">Send us a message</h2>
-            <p className="mt-2 text-primary/80">We&apos;ll respond within one business day.</p>
+            <p className="mt-2 text-primary/80">
+              We&apos;ll respond within one business day.
+            </p>
             <div className="mt-8 space-y-6">
-              {['name', 'email', 'phone'].map((field) => (
+              {["name", "email", "phone"].map((field) => (
                 <div key={field}>
-                  <label htmlFor={field} className="text-sm font-semibold uppercase tracking-[0.3em] text-primary/70">
-                    {field === 'name' ? 'Name' : field === 'email' ? 'Email' : 'Phone Number'}
+                  <label
+                    htmlFor={field}
+                    className="text-sm font-semibold uppercase tracking-[0.3em] text-primary/70"
+                  >
+                    {field === "name"
+                      ? "Name"
+                      : field === "email"
+                        ? "Email"
+                        : "Phone Number"}
                   </label>
                   <input
                     id={field}
                     name={field}
-                    type={field === 'email' ? 'email' : field === 'phone' ? 'tel' : 'text'}
+                    type={
+                      field === "email"
+                        ? "email"
+                        : field === "phone"
+                          ? "tel"
+                          : "text"
+                    }
                     value={form[field]}
                     onChange={handleChange}
                     required
                     className="mt-2 w-full rounded-2xl border border-primary/30 bg-white px-4 py-3 text-primary shadow-inner focus:border-primary focus:outline-none"
                   />
-                  {errors[field] && <p className="mt-2 text-sm text-primary">{errors[field]}</p>}
+                  {errors[field] && (
+                    <p className="mt-2 text-sm text-primary">{errors[field]}</p>
+                  )}
                 </div>
               ))}
               <div>
-                <label htmlFor="message" className="text-sm font-semibold uppercase tracking-[0.3em] text-primary/70">
+                <label
+                  htmlFor="message"
+                  className="text-sm font-semibold uppercase tracking-[0.3em] text-primary/70"
+                >
                   Message
                 </label>
                 <textarea
@@ -136,7 +182,9 @@ const Contact = () => {
                   required
                   className="mt-2 w-full rounded-2xl border border-primary/30 bg-white px-4 py-3 text-primary shadow-inner focus:border-primary focus:outline-none"
                 />
-                {errors.message && <p className="mt-2 text-sm text-primary">{errors.message}</p>}
+                {errors.message && (
+                  <p className="mt-2 text-sm text-primary">{errors.message}</p>
+                )}
               </div>
             </div>
             <button
@@ -144,9 +192,13 @@ const Contact = () => {
               className="mt-8 w-full rounded-full bg-primary px-6 py-3 text-sm font-semibold uppercase tracking-[0.4em] text-white transition hover:scale-[1.01] disabled:opacity-60"
               disabled={loading}
             >
-              {loading ? 'Sending...' : 'Submit'}
+              {loading ? "Sending..." : "Submit"}
             </button>
-            {success && <p className="mt-4 text-center text-primary">Thank you! We&apos;ll contact you soon.</p>}
+            {success && (
+              <p className="mt-4 text-center text-primary">
+                Thank you! We&apos;ll contact you soon.
+              </p>
+            )}
           </form>
 
           <div className="space-y-8">
@@ -155,13 +207,23 @@ const Contact = () => {
               <ul className="mt-6 space-y-4 text-primary/80">
                 <li className="flex gap-4">
                   <FiMail className="mt-1 h-5 w-5" aria-hidden="true" />
-                  <a href="mailto:primefutureeducation@gmail.com">primefutureeducation@gmail.com</a>
+                  <a href="mailto:primefutureeducation@gmail.com">
+                    primefutureeducation@gmail.com
+                  </a>
                 </li>
                 <li className="flex gap-4">
                   <FiPhone className="mt-1 h-5 w-5" aria-hidden="true" />
                   <div className="space-y-2">
-                    {['+91 90258 92194', '+91 86677 02580', '+91 93604 07866'].map((number) => (
-                      <a key={number} href={`tel:${number.replace(/\s+/g, '')}`} className="block">
+                    {[
+                      "+91 90258 92194",
+                      "+91 86677 02580",
+                      "+91 93604 07866",
+                    ].map((number) => (
+                      <a
+                        key={number}
+                        href={`tel:${number.replace(/\s+/g, "")}`}
+                        className="block"
+                      >
                         {number}
                       </a>
                     ))}
@@ -170,7 +232,8 @@ const Contact = () => {
                 <li className="flex gap-4">
                   <FiMapPin className="mt-1 h-5 w-5" aria-hidden="true" />
                   <span>
-                    1st Floor, Prime Plaza, 30/13, K.R, College Rd, E Layout, Tirupur, Tamil Nadu 641602
+                    1st Floor, Prime Plaza, 30/13, K.R, College Rd, E Layout,
+                    Tirupur, Tamil Nadu 641602
                   </span>
                 </li>
               </ul>
@@ -209,9 +272,21 @@ const Contact = () => {
         <h2 className="text-3xl font-semibold">Connect With Us</h2>
         <div className="mt-6 flex flex-wrap justify-center gap-6 text-4xl">
           {[
-            { icon: <FiLinkedin />, label: 'LinkedIn', href: 'https://www.linkedin.com/company/primefuture-education' },
-            { icon: <FiInstagram />, label: 'Instagram', href: 'https://www.instagram.com/primefuture.education?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==' },
-            { icon: <FiFacebook />, label: 'Facebook', href: 'https://www.facebook.com/' },
+            {
+              icon: <FiLinkedin />,
+              label: "LinkedIn",
+              href: "https://www.linkedin.com/company/primefuture-education",
+            },
+            {
+              icon: <FiInstagram />,
+              label: "Instagram",
+              href: "https://www.instagram.com/primefuture.education?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==",
+            },
+            {
+              icon: <FiFacebook />,
+              label: "Facebook",
+              href: "https://www.facebook.com/",
+            },
           ].map((social) => (
             <a
               key={social.label}
@@ -227,8 +302,7 @@ const Contact = () => {
         </div>
       </Motion.section>
     </div>
-  )
-}
+  );
+};
 
-export default Contact
-
+export default Contact;
