@@ -160,7 +160,7 @@ const Contact = () => {
                 <li className="flex gap-4">
                   <FiPhone className="mt-1 h-5 w-5" aria-hidden="true" />
                   <div className="space-y-2">
-                    {['+91 86677 02580', '+91 90258 92194', '+91 93604 07866'].map((number) => (
+                    {['+91 90258 92194', '+91 86677 02580', '+91 93604 07866'].map((number) => (
                       <a key={number} href={`tel:${number.replace(/\s+/g, '')}`} className="block">
                         {number}
                       </a>

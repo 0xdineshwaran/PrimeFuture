@@ -509,6 +509,79 @@ const Home = () => {
             ))}
           </div>
         </section>
+        {/* ===== SECTION 7.5: Video Review ===== */}
+
+        <Motion.section
+          id="video-review"
+          ref={videoRef}
+          initial={{ opacity: 0, y: 40 }}
+          animate={videoControls}
+          className="bg-white px-6 py-20"
+        >
+          <div className="mx-auto max-w-6xl">
+            <div className="mt-12 grid gap-8 md:grid-cols-2 items-start">
+              <div className="flex justify-center">
+                <Swiper
+                  modules={[Pagination]}
+                  spaceBetween={20}
+                  slidesPerView={1}
+                  loop={true}
+                  pagination={{ clickable: true }}
+                  speed={700}
+                  onSwiper={(s) => playActiveReel(s)}
+                  onSlideChange={(s) => playActiveReel(s)}
+                  className="w-full max-w-[320px]"
+                >
+                  {videoReels.map((vid, idx) => (
+                    <SwiperSlide key={vid.src}>
+                      <article className="rounded-3xl overflow-hidden bg-primary/5 shadow-elevation flex justify-center">
+                        <video
+                          ref={(el) => (videoRefs.current[idx] = el)}
+                          playsInline
+                          muted
+                          controls
+                          className="w-full aspect-[9/16] bg-black"
+                          poster={vid.poster}
+                        >
+                          <source src={vid.src} type="video/mp4" />
+                          Your browser does not support the video tag.
+                        </video>
+                      </article>
+                    </SwiperSlide>
+                  ))}
+                </Swiper>
+              </div>
+              <div className="mt-10 md:mt-20">
+                <div className="text-center">
+                  <p className="text-sm font-semibold uppercase tracking-[0.4em] text-primary/70">
+                    Video Review
+                  </p>
+                  <h2 className="mt-4 mb-6 text-4xl font-semibold text-primary">
+                    Student Video Testimonials
+                  </h2>
+                </div>
+                <p className="text-primary/80">
+                  Watch our students share their experiences and outcomes after
+                  working with PrimeFuture Education. These candid video
+                  testimonials highlight support, admissions success, and
+                  scholarship wins.
+                </p>
+                <ul className="mt-6 space-y-3 text-primary/80 list-inside list-disc">
+                  <li>Personalised mentorship and SOP guidance</li>
+                  <li>Interview preparation and scholarship support</li>
+                  <li>Visa documentation and pre-departure assistance</li>
+                </ul>
+                <button
+                  type="button"
+                  onClick={() => navigate("/contact")}
+                  className="mt-6 rounded-full bg-primary px-6 py-3 text-sm font-semibold text-white"
+                >
+                  Talk to an advisor
+                </button>
+              </div>
+            </div>
+          </div>
+        </Motion.section>
 
         {/* ===== SECTION 6: Services Grid ===== */}
 
@@ -672,80 +745,6 @@ const Home = () => {
                   </SwiperSlide>
                 ))}
               </Swiper>
-            </div>
-          </div>
-        </Motion.section>
-
-        {/* ===== SECTION 7.5: Video Review ===== */}
-
-        <Motion.section
-          id="video-review"
-          ref={videoRef}
-          initial={{ opacity: 0, y: 40 }}
-          animate={videoControls}
-          className="bg-white px-6 py-20"
-        >
-          <div className="mx-auto max-w-6xl">
-            <div className="mt-12 grid gap-8 md:grid-cols-2 items-start">
-              <div className="flex justify-center">
-                <Swiper
-                  modules={[Pagination]}
-                  spaceBetween={20}
-                  slidesPerView={1}
-                  loop={true}
-                  pagination={{ clickable: true }}
-                  speed={700}
-                  onSwiper={(s) => playActiveReel(s)}
-                  onSlideChange={(s) => playActiveReel(s)}
-                  className="w-full max-w-[320px]"
-                >
-                  {videoReels.map((vid, idx) => (
-                    <SwiperSlide key={vid.src}>
-                      <article className="rounded-3xl overflow-hidden bg-primary/5 shadow-elevation flex justify-center">
-                        <video
-                          ref={(el) => (videoRefs.current[idx] = el)}
-                          playsInline
-                          muted
-                          controls
-                          className="w-full aspect-[9/16] bg-black"
-                          poster={vid.poster}
-                        >
-                          <source src={vid.src} type="video/mp4" />
-                          Your browser does not support the video tag.
-                        </video>
-                      </article>
-                    </SwiperSlide>
-                  ))}
-                </Swiper>
-              </div>
-              <div className="mt-10 md:mt-20">
-                <div className="text-center">
-                  <p className="text-sm font-semibold uppercase tracking-[0.4em] text-primary/70">
-                    Video Review
-                  </p>
-                  <h2 className="mt-4 mb-6 text-4xl font-semibold text-primary">
-                    Student Video Testimonials
-                  </h2>
-                </div>
-                <p className="text-primary/80">
-                  Watch our students share their experiences and outcomes after
-                  working with PrimeFuture Education. These candid video
-                  testimonials highlight support, admissions success, and
-                  scholarship wins.
-                </p>
-                <ul className="mt-6 space-y-3 text-primary/80 list-inside list-disc">
-                  <li>Personalised mentorship and SOP guidance</li>
-                  <li>Interview preparation and scholarship support</li>
-                  <li>Visa documentation and pre-departure assistance</li>
-                </ul>
-                <button
-                  type="button"
-                  onClick={() => navigate("/contact")}
-                  className="mt-6 rounded-full bg-primary px-6 py-3 text-sm font-semibold text-white"
-                >
-                  Talk to an advisor
-                </button>
-              </div>
             </div>
           </div>
         </Motion.section>

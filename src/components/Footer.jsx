@@ -9,7 +9,7 @@ import { Link } from 'react-router-dom'
 import { FiMail, FiPhone, FiMapPin, FiLinkedin, FiInstagram, FiFacebook } from 'react-icons/fi'
 
 // Contact numbers displayed in the contact column
-const contactNumbers = ['+91 86677 02580', '+91 90258 92194', '+91 93604 07866']
+const contactNumbers = ['+91 90258 92194', '+91 86677 02580', '+91 93604 07866']
 
 const Footer = () => {
   // Footer renders four primary columns: brand, quick links, contact, and social
