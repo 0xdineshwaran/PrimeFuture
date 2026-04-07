@@ -5,7 +5,7 @@
  * Used on: / (Home route)
  */
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { motion as Motion, useScroll, useTransform } from "framer-motion";
 import CountUp from "react-countup";
@@ -132,6 +132,16 @@ const leaderImages = {
  * Features: hero video, company brief, leadership, success metrics, services grid, testimonials carousel, final CTA
  */
 const Home = () => {
+  const [showPopup, setShowPopup] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowPopup(true);
+    }, 5000); // 5 seconds
+
+    return () => clearTimeout(timer);
+  }, []);
+
   // Router helpers used to navigate or read location state
   const location = useLocation();
   const navigate = useNavigate();
@@ -397,6 +407,29 @@ const Home = () => {
             </button>
           </div>
         </Motion.section>
+
+        {/* ✅ POPUP START */}
+        {showPopup && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70">
+            <div className="relative max-w-lg w-full mx-4">
+              {/* Close Button */}
+              <button
+                onClick={() => setShowPopup(false)}
+                className="absolute -top-3 -right-3 bg-white text-black rounded-full w-8 h-8 font-bold shadow-lg"
+              >
+                ✕
+              </button>
+
+              {/* Poster Image */}
+              <img
+                src="/image/popup-poster.jpeg"
+                alt="Popup Poster"
+                className="rounded-2xl shadow-2xl w-full"
+              />
+            </div>
+          </div>
+        )}
+        {/* ✅ POPUP END */}
 
         {/* ===== SECTION 4: Leadership Team ===== */}
 
