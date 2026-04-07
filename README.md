@@ -35,7 +35,7 @@ npm install
 Start the Vite dev server:
 
 ```powershell
-npm run dev
+npm audit fix
 ```
 
 Open the indicated local URL (usually `http://localhost:5173`) to preview the site.
