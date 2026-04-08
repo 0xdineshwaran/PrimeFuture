@@ -474,7 +474,7 @@ const Home = () => {
                 },
                 {
                   name: "Bharath Raj J",
-                  title: "Chief Executive Officer",
+                  title: "Co-Founder",
                   description:
                     "Driving excellence in student guidance and success.",
                 },

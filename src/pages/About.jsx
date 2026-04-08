@@ -176,7 +176,7 @@ const About = () => {
             {[
               {
                 name: 'Sathesh Kumar',
-                title: 'Founder & Visionary',
+                title: 'Founder',
                 description: [
                   'With over a decade of experience in international education consulting, Sathesh Kumar founded PrimeFuture Education with a vision to transform how students access global opportunities.',
                   'His passion for education and commitment to student success has helped hundreds of students achieve their dreams of studying abroad.',
@@ -186,7 +186,7 @@ const About = () => {
               },
               {
                 name: 'Bharath Raj J',
-                title: 'Chief Executive Officer',
+                title: 'Co-Founder',
                 description: [
                   'Bharath Raj J brings strategic vision and operational excellence to PrimeFuture Education.',
                   'With extensive experience in international education and student services, Bharath has built strong partnerships with universities worldwide.',
