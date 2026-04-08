@@ -118,6 +118,22 @@ const videoReels = [
     poster: "/image/video-poster2.jpg",
     caption: "Student Reel 2",
   },
+    {
+    src: "/video/video3.MP4",
+    poster: "",
+    caption: "Student Reel 3",
+  },
+    {
+    src: "/video/video4.MP4",
+    poster: "",
+    caption: "Student Reel 4",
+  },
+    {
+    src: "/video/video5.MP4",
+    poster: "",
+    caption: "Student Reel 5",
+  },
+  
   //{ src: "/video/reel3.mp4", poster: "/image/video-poster3.jpg", caption: "Student Reel 3" },
 ];
 
