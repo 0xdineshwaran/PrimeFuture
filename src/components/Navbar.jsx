@@ -16,6 +16,11 @@ const navLinks = [
   { label: 'Services', path: '/services' },
 ]
 
+const authLinks = [
+  { label: 'Login', path: '/login' },
+  { label: 'Sign Up', path: '/signup' },
+]
+
 /**
  * Navbar
  * Renders navigation links and a mobile menu
@@ -57,8 +62,6 @@ const Navbar = () => {
 
   // Helper to determine active link styling
   const isActive = (path) => (path === '/' ? location.pathname === '/' : location.pathname.startsWith(path))
-  const isContactActive = location.pathname.startsWith('/contact')
-
   return (
     <header
       className={`fixed inset-x-0 top-0 z-40 transition-shadow duration-300 ${
@@ -84,6 +87,18 @@ const Navbar = () => {
 
         <nav className="hidden items-center gap-8 md:flex" aria-label="Primary">
           {navLinks.map((link) => (
+            <button
+              type="button"
+              key={link.label}
+              onClick={() => handleNavClick(link)}
+              className={`text-sm font-semibold uppercase tracking-widest transition ${
+                isActive(link.path) ? 'text-white underline decoration-2' : 'text-white/80 hover:text-white'
+              }`}
+            >
+              {link.label}
+            </button>
+          ))}
+          {authLinks.map((link) => (
             <button
               type="button"
               key={link.label}
@@ -124,7 +139,7 @@ const Navbar = () => {
             aria-label="Mobile Navigation"
           >
             <div className="flex flex-col gap-4 border-t border-white/20 bg-[#211E61] px-6 py-4">
-              {[...navLinks, { label: 'Contact', path: '/contact' }].map((link) => (
+              {[...navLinks, ...authLinks, { label: 'Contact', path: '/contact' }].map((link) => (
                 <button
                   type="button"
                   key={link.label}

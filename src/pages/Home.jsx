@@ -558,7 +558,7 @@ const Home = () => {
             ))}
           </div>
         </section>
-        {/* ===== SECTION 7.5: Video Review ===== */}
+        {/* ===== SECTION 6 Video Review ===== */}
 
         <Motion.section
           id="video-review"
@@ -632,7 +632,7 @@ const Home = () => {
           </div>
         </Motion.section>
 
-        {/* ===== SECTION 6: Services Grid ===== */}
+        {/* ===== SECTION 7: Services Grid ===== */}
 
         <Motion.section
           ref={servicesRef}
@@ -687,7 +687,7 @@ const Home = () => {
           </div>
         </Motion.section>
 
-        {/* ===== SECTION 6.5: Country Carousel ===== */}
+        {/* ===== SECTION 8: Country Carousel ===== */}
         <section className="bg-white px-6 py-20">
           <div className="mx-auto max-w-6xl">
             <div className="text-center">
@@ -751,7 +751,7 @@ const Home = () => {
           </div>
         </section>
 
-        {/* ===== SECTION 7: Reviews Carousel ===== */}
+        {/* ===== SECTION 9: Reviews Carousel ===== */}
 
         <Motion.section
           ref={testimonialsRef}
@@ -798,7 +798,7 @@ const Home = () => {
           </div>
         </Motion.section>
 
-        {/* ===== SECTION 8: Final CTA ===== */}
+        {/* ===== SECTION 10: Final CTA ===== */}
 
         <Motion.section
           id="contact-cta"

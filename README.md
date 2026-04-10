@@ -31,6 +31,25 @@ Open a terminal in the project root and run:
 npm install
 ```
 
+## Google Auth Setup (Firebase)
+Google Login and Sign Up use Firebase Authentication.
+
+1. Create a Firebase project in Firebase Console.
+2. Enable Authentication > Sign-in method > Google.
+3. Copy `.env.example` to `.env`.
+4. Fill these values in `.env`:
+
+```env
+VITE_FIREBASE_API_KEY=your_value
+VITE_FIREBASE_AUTH_DOMAIN=your_value
+VITE_FIREBASE_PROJECT_ID=your_value
+VITE_FIREBASE_STORAGE_BUCKET=your_value
+VITE_FIREBASE_MESSAGING_SENDER_ID=your_value
+VITE_FIREBASE_APP_ID=your_value
+```
+
+After adding the env values, restart the dev server.
+
 ## Development — Run the dev server
 Start the Vite dev server:
 

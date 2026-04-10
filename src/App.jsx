@@ -21,6 +21,8 @@ import NotFound from './pages/NotFound'
 import Privacy from './pages/Privacy'
 import Terms from './pages/Terms'
 import Sitemap from './pages/Sitemap'
+import Login from './pages/Login'
+import Signup from './pages/Signup'
 
 /**
  * PageWrapper
@@ -115,6 +117,22 @@ const App = () => {
               element={
                 <PageWrapper>
                   <Contact />
+                </PageWrapper>
+              }
+            />
+            <Route
+              path="/login"
+              element={
+                <PageWrapper>
+                  <Login />
+                </PageWrapper>
+              }
+            />
+            <Route
+              path="/signup"
+              element={
+                <PageWrapper>
+                  <Signup />
                 </PageWrapper>
               }
             />
